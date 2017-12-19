@@ -39,6 +39,29 @@ int PowerFour::play(int player, size_t column) {
     return 1;
 }
 
+#ifdef _WIN32
+void PowerFour::print() {
+    cout << "Where X is Red and O is Blue" << endl;
+    for (size_t line = HEIGHT; line > 0; line--) {
+        cout << "|";
+        for (size_t column = 0; column < WIDTH; ++column) {
+            int val = this->grid_->operator()(column, line-1);
+            if (val == NONE) {
+                cout << " ";
+            } else if (val == BLUE) {
+                cout << 'O';
+            } else if (val == RED) {
+                cout << 'X';
+            }
+            cout << "|";
+        }
+        cout << endl;
+    }
+    cout << "+-+-+-+-+-+-+-+" << endl;
+    cout << " 1 2 3 4 5 6 7 " << endl << endl;
+
+}
+#else
 void PowerFour::print() {
     for (size_t line = HEIGHT; line > 0; line--) {
         cout << "|";
@@ -59,6 +82,7 @@ void PowerFour::print() {
     cout << " 1 2 3 4 5 6 7 " << endl << endl;
 
 }
+#endif
 
 /**
  * Check if somebody win the game

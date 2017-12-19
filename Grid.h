@@ -7,6 +7,7 @@
 
 
 #include <vector>
+#include <cstddef>
 
 class Grid {
     typedef std::vector<int> storage;
