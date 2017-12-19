@@ -136,4 +136,8 @@ int PowerFour::checkDiagonals() {
     return NONE;
 }
 
+bool PowerFour::isColumnFull(size_t column) {
+    return this->grid_->operator()(column, WIDTH - 2) != NONE;
+}
+
 
