@@ -8,7 +8,8 @@
 
 #include "Player.h"
 
-class IaPLayer : Player {
+class IaPLayer : public Player {
+public:
     IaPLayer(int player, string name) : Player(player, name){}
 
 

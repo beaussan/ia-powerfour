@@ -8,7 +8,7 @@
 
 #include "Player.h"
 
-class HumanPlayer : Player {
+class HumanPlayer : public Player {
 public:
     HumanPlayer(int player, string name) : Player(player, name){}
 };
