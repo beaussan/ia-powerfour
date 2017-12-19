@@ -4,9 +4,10 @@
 
 #include "Player.h"
 
-Player::Player(int player)
+Player::Player(int player, string name)
 {
     this->player = player;
+    this->name = name;
 }
 
 int Player::getPlayer() {

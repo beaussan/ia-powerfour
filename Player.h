@@ -15,7 +15,7 @@ protected:
     string name;
 public:
     Player(){};
-    Player(int player);
+    Player(int player, string name);
 
 
     int getPlayer();

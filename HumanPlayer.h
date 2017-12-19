@@ -9,8 +9,7 @@
 #include "Player.h"
 
 class HumanPlayer : Player {
-public:
-    HumanPlayer(int player, string name);
+    
 };
 
 
