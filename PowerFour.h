@@ -27,6 +27,8 @@ public:
 
     int play(int player, size_t column);
 
+    bool isColumnFull(size_t column);
+
     void print();
 
     int checkIfWin();

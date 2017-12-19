@@ -14,13 +14,13 @@ int getChoice(int min, int max) {
 
     do {
         cout << "> ";
-        std::cin >> x;
-        while (std::cin.fail()) {
-            std::cout << "Please enter a number" << std::endl;
-            std::cin.clear();
-            std::cin.ignore(256, '\n');
+        cin >> x;
+        while (cin.fail()) {
+            cout << "Please enter a number" << endl;
+            cin.clear();
+            cin.ignore(256, '\n');
             cout << "> ";
-            std::cin >> x;
+            cin >> x;
         }
 
         if (x < min || max < x) {

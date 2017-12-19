@@ -10,9 +10,9 @@
 
 using namespace std;
 
-Player createPlayer(int color, string printedName);
+Player createPlayer(int color, const string &printedName);
 
-Player createPlayer(int color, string printedName) {
+Player createPlayer(int color, const string &printedName) {
     cout << "What do you want " << printedName << "to be ?" << endl;
     cout << "1) A human player" << endl;
     cout << "2) IA with MinMax algoritm" << endl;
@@ -34,8 +34,8 @@ Player createPlayer(int color, string printedName) {
 
 int main() {
 
-    Player p1 = createPlayer(BLUE, "the blue player");
-    Player p2 = createPlayer(RED, "the red player");
+    // Player p1 = createPlayer(BLUE, "the blue player");
+    // Player p2 = createPlayer(RED, "the red player");
 
     PowerFour *gr = new PowerFour();
     cout << gr->get(2, 3) << endl;
@@ -52,19 +52,34 @@ int main() {
     gr->play(RED, 6);
     gr->print();
 
-    int choiseInit = getChoice(1,3);
-
-    cout << "Choise int : " << choiseInit << endl;
 
     cout << "if win " << gr->checkIfWin() << " (rapel : Blue : " << BLUE << ", Red : " << RED << ")" << endl;
 
     gr->play(BLUE, 2);
+    gr->play(BLUE, 2);
+    gr->play(BLUE, 2);
+    gr->play(BLUE, 2);
+    cout << "playing mass blue on 2 " << gr->isColumnFull(2) <<  endl;
+    gr->play(BLUE, 2);
+    if (gr->isColumnFull(2)) {
+        cout << "Column is full :D " << endl;
+    }
+
+    cout << "playing mass blue on 2 " << gr->isColumnFull(2) <<  endl;
+    gr->play(BLUE, 2);
+    cout << "playing mass blue on 2 " << gr->isColumnFull(2) <<  endl;
+    if (gr->isColumnFull(2)) {
+        cout << "Column is full :D " << endl;
+    }
     gr->print();
     gr->play(BLUE, 4);
     gr->print();
 
     cout << "if win " << gr->checkIfWin() << " (rapel : Blue : " << BLUE << ", Red : " << RED << ")" << endl;
 
+    string tmp;
+
+    cin >> tmp;
 
     return 0;
 }
