@@ -6,6 +6,7 @@
 #define POWERFOUR_PLAYER_H
 
 #include <string>
+#include "PowerFour.h"
 
 using namespace std;
 
@@ -16,7 +17,7 @@ protected:
 public:
     Player(){};
     Player(int player, string name);
-
+    int getCoup(PowerFour pf);
 
     int getPlayer();
     void setName(string name);

@@ -3,3 +3,7 @@
 //
 
 #include "IaPLayer.h"
+
+int Player::getCoup(PowerFour grid) {
+
+}
