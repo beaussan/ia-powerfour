@@ -9,6 +9,7 @@
 #include "Player.h"
 
 class IaPLayer : Player {
+    IaPLayer(int player, string name) : Player(player, name){}
 
 
 };
