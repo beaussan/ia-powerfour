@@ -110,13 +110,28 @@ int PowerFour::checkIfWin() {
 }
 
 int PowerFour::checkColumn() {
+    for (size_t column = 0; column < WIDTH; ++column) {
+        for (size_t line = 0; line < 3; line++) {
+            int somme = this->grid_->operator()(column, line)
+                        + this->grid_->operator()(column, line+1)
+                        + this->grid_->operator()(column, line+2)
+                        + this->grid_->operator()(column, line+3);
+
+            if (somme == RED*4) {
+                return RED;
+            } else if (somme == BLUE*4) {
+                return BLUE;
+            }
+        }
+    }
+
 
     return NONE;
 }
 
 int PowerFour::checkLines() {
     for (size_t line = HEIGHT; line > 0; line--) {
-        for (size_t column = 0; column < WIDTH-4; ++column) {
+        for (size_t column = 0; column <= WIDTH-4; ++column) {
             int somme = this->grid_->operator()(column, line-1)
             + this->grid_->operator()(column+1, line-1)
             + this->grid_->operator()(column+2, line-1)
