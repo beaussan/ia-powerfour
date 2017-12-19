@@ -3,3 +3,8 @@
 //
 
 #include "HumanPlayer.h"
+
+
+HumanPlayer::HumanPlayer(int player, string name) : Player(player) {
+    this->name = name;
+}
