@@ -6,7 +6,7 @@
 #include "PowerFour.h"
 
 int Player::getCoup(PowerFour grid) {
-
+    return
 }
 
 int IaPLayer::min(PowerFour powerFour, int profondeur) {
@@ -17,11 +17,21 @@ int IaPLayer::min(PowerFour powerFour, int profondeur) {
         return eval(powerFour);
     }
 
-    int tmp;
+    int tmp = 1001;
     int min = 1000;
 
+    for (size_t i = 0; i < WIDTH; ++i) {
+        if (!copy.isColumnFull(i)) {
+            copy.play(this->player, i);
+            tmp = this->max(copy, profondeur-1);
+            if (tmp < min) {
+                tmp = min;
+            }
+        };
+    }
 
-    return 0;
+
+    return tmp;
 }
 
 int IaPLayer::max(PowerFour powerFour, int profondeur) {
@@ -32,14 +42,22 @@ int IaPLayer::max(PowerFour powerFour, int profondeur) {
         return eval(powerFour);
     }
 
-    int tmp;
+    int tmp = -1001;
+    size_t * colonne;
     int max = -1000;
 
-    for(int i = 0 ; i < WIDTH ; i++) {
-        
+    for(size_t i = 0 ; i < WIDTH ; ++i) {
+        if (!copy.isColumnFull(i)) {
+            copy.play(this->player, i);
+            tmp = this->min(copy, profondeur-1);
+            if (tmp > max) {
+                tmp = max;
+            }
+        }
+
     }
 
-    return 0;
+    return tmp;
 }
 
 int IaPLayer::eval(PowerFour powerFour) {
@@ -54,4 +72,8 @@ int IaPLayer::eval(PowerFour powerFour) {
     }
 
     return 0;
+}
+
+int IaPLayer::getCoup(PowerFour pf) {
+    return this->max(pf, DEPTH);
 }

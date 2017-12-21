@@ -5,6 +5,7 @@
 #ifndef POWERFOUR_IAPLAYER_H
 #define POWERFOUR_IAPLAYER_H
 
+#define DEPTH 4
 
 #include "Player.h"
 #include "PowerFour.h"
@@ -15,6 +16,8 @@ public:
     int min(PowerFour powerFour, int profondeur);
     int max(PowerFour powerFour, int profondeur);
     int eval(PowerFour powerFour);
+
+    int getCoup(PowerFour pf) override;
 
 
 };
