@@ -148,6 +148,42 @@ int PowerFour::checkLines() {
 }
 
 int PowerFour::checkDiagonals() {
+
+    // check right diagonals
+
+    for (size_t line = 0; line < HEIGHT -3; ++line) {
+        for(size_t column = 0; column < WIDTH - 3; ++column){
+            int somme = this->grid_->operator()(column, line)
+                + this->grid_->operator()(column + 1, line+1)
+                + this->grid_->operator()(column + 2, line+2)
+                + this->grid_->operator()(column + 3, line+3);
+
+            if (somme == RED*4) {
+                return RED;
+            } else if (somme == BLUE*4) {
+                return BLUE;
+            }
+        }
+    }
+
+    // check left diagonals
+
+    for (size_t line = 0; line < HEIGHT -3; ++line) {
+        for(size_t column = 3; column < WIDTH; ++column){
+            int somme = this->grid_->operator()(column, line)
+                        + this->grid_->operator()(column - 1, line+1)
+                        + this->grid_->operator()(column - 2, line+2)
+                        + this->grid_->operator()(column - 3, line+3);
+
+            if (somme == RED*4) {
+                return RED;
+            } else if (somme == BLUE*4) {
+                return BLUE;
+            }
+        }
+    }
+
+
     return NONE;
 }
 
