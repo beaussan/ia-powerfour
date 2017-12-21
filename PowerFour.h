@@ -25,7 +25,7 @@ public:
 
     int get(size_t c, size_t l);
 
-    int play(int player, size_t column);
+    bool play(int player, size_t column);
 
     bool isColumnFull(size_t column);
 

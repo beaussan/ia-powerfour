@@ -25,18 +25,18 @@ int PowerFour::get(size_t c, size_t l) {
  * Play a step of the game
  * @param player the value to set
  * @param column the column to play (0 to WITH -1)
- * @return 0 if everything is ok, 1 if the move was wrong
+ * @return true if everything is ok, false if the move was wrong
  */
-int PowerFour::play(int player, size_t column) {
+bool PowerFour::play(int player, size_t column) {
     assert(0 <= column && column < WIDTH);
 
     for (size_t l = 0; l <= HEIGHT; ++l) {
         if (this->get(column, l) == NONE) {
             this->grid_->operator()(column, l) = player;
-            return 0;
+            return true;
         }
     }
-    return 1;
+    return false;
 }
 
 #ifdef _WIN32
