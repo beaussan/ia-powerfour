@@ -1,15 +1,11 @@
 //
 // Created by beaussan on 14/12/17.
 //
-
 #include "IaPLayer.h"
 #include "PowerFour.h"
+#include <vector>
 
-int Player::getCoup(PowerFour grid) {
-    return
-}
-
-int IaPLayer::min(PowerFour powerFour, int profondeur) {
+vector<int> IaPLayer::min(PowerFour powerFour, int profondeur) {
     PowerFour copy = powerFour;
 
     if(profondeur == 0 || powerFour.checkIfWin()!=0)
@@ -17,63 +13,61 @@ int IaPLayer::min(PowerFour powerFour, int profondeur) {
         return eval(powerFour);
     }
 
-    int tmp = 1001;
-    int min = 1000;
-
-    for (size_t i = 0; i < WIDTH; ++i) {
-        if (!copy.isColumnFull(i)) {
-            copy.play(this->player, i);
-            tmp = this->max(copy, profondeur-1);
-            if (tmp < min) {
-                tmp = min;
+    vector<int> min = {NULL, 1000};
+    vector<int> coup;
+    for (int i = 0; i < WIDTH; ++i) {
+        if (!copy.isColumnFull((size_t) i)) {
+            copy.play(this->player, (size_t) i);
+            coup = this->max(copy, profondeur-1);
+            if (min[0] == NULL || coup[1] < min[1]) {
+                min[0] = i;
+                min[1] = coup[1];
             }
         };
     }
 
 
-    return tmp;
+    return coup;
 }
 
-int IaPLayer::max(PowerFour powerFour, int profondeur) {
+vector<int> IaPLayer::max(PowerFour powerFour, int profondeur) {
     PowerFour copy = powerFour;
 
-    if(profondeur == 0 || powerFour.checkIfWin()!=0)
-    {
+    if(profondeur == 0 || powerFour.checkIfWin()!=0) {
         return eval(powerFour);
     }
 
-    int tmp = -1001;
-    size_t * colonne;
-    int max = -1000;
 
-    for(size_t i = 0 ; i < WIDTH ; ++i) {
-        if (!copy.isColumnFull(i)) {
-            copy.play(this->player, i);
-            tmp = this->min(copy, profondeur-1);
-            if (tmp > max) {
-                tmp = max;
+    vector<int> max = {NULL, -1000};
+    vector<int> coup;
+    for(int i = 0 ; i < WIDTH ; ++i) {
+        if (!copy.isColumnFull((size_t) i)) {
+            copy.play(this->player, (size_t) i);
+            coup = this->min(copy, profondeur-1);
+            if (max[0] == NULL || coup[1] > max[1]) {
+                max[0] = i;
+                max[1] = coup[1];
             }
         }
-
     }
 
-    return tmp;
+    return max;
 }
 
-int IaPLayer::eval(PowerFour powerFour) {
+vector<int> IaPLayer::eval(PowerFour powerFour) {
     int vainqueur = powerFour.checkIfWin();
-
+    vector<int> coup = {NULL, 0};
     if (vainqueur == this->player) {
-        return 1000;
+        coup = {NULL, 1000};
+        return coup;
     } else if (vainqueur == (-1) * this->player) {
-        return -1000;
+        coup = {NULL, -1000};
+        return coup;
     } else {
-        return 0;
+        return coup;
     }
-
-    return 0;
 }
 
 int IaPLayer::getCoup(PowerFour pf) {
-    return this->max(pf, DEPTH);
+    return this->max(pf, DEPTH)[0];
 }
