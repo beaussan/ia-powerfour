@@ -3,3 +3,7 @@
 //
 
 #include "HumanPlayer.h"
+
+int HumanPlayer::getCoup(PowerFour pf) {
+    return 0;
+}

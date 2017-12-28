@@ -8,9 +8,13 @@
 
 #include "Player.h"
 
+
 class HumanPlayer : public Player {
 public:
     HumanPlayer(int player, string name) : Player(player, name){}
+
+    virtual int getCoup(PowerFour pf);
+
 };
 
 

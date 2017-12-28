@@ -21,3 +21,7 @@ void Player::setName(string name) {
 string Player::getName() {
     return this->name;
 }
+
+int Player::getCoup(PowerFour pf) {
+    return 0;
+}

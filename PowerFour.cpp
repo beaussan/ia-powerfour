@@ -14,7 +14,7 @@ PowerFour::PowerFour() {
 }
 
 PowerFour::~PowerFour() {
-    delete grid_;
+    // delete grid_;
 }
 
 int PowerFour::get(size_t c, size_t l) {
@@ -28,6 +28,7 @@ int PowerFour::get(size_t c, size_t l) {
  * @return 0 if everything is ok, 1 if the move was wrong
  */
 int PowerFour::play(int player, size_t column) {
+    cout << column << " play column" << endl;
     assert(0 <= column && column < WIDTH);
 
     for (size_t l = 0; l <= HEIGHT; ++l) {
