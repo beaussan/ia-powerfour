@@ -13,9 +13,9 @@
 class IaPLayer : public Player {
 public:
     IaPLayer(int player, string name) : Player(player, name){}
-    int min(PowerFour powerFour, int profondeur);
-    int max(PowerFour powerFour, int profondeur);
-    int eval(PowerFour powerFour);
+    vector<int> min(PowerFour powerFour, int profondeur);
+    vector<int> max(PowerFour powerFour, int profondeur);
+    vector<int> eval(PowerFour powerFour);
 
     int getCoup(PowerFour pf) override;
 
