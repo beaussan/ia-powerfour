@@ -13,13 +13,13 @@ vector<int> IaPLayer::min(PowerFour powerFour, int profondeur) {
         return eval(powerFour);
     }
 
-    vector<int> min = {NULL, 1000};
+    vector<int> min = {NULL_VALUE, 1000};
     vector<int> coup;
     for (int i = 0; i < WIDTH; ++i) {
         if (!copy.isColumnFull((size_t) i)) {
             copy.play(this->player, (size_t) i);
             coup = this->max(copy, profondeur-1);
-            if (min[0] == NULL || coup[1] < min[1]) {
+            if (min[0] == NULL_VALUE || coup[1] < min[1]) {
                 min[0] = i;
                 min[1] = coup[1];
             }
@@ -38,13 +38,13 @@ vector<int> IaPLayer::max(PowerFour powerFour, int profondeur) {
     }
 
 
-    vector<int> max = {NULL, -1000};
+    vector<int> max = {NULL_VALUE, -1000};
     vector<int> coup;
     for(int i = 0 ; i < WIDTH ; ++i) {
         if (!copy.isColumnFull((size_t) i)) {
             copy.play(this->player, (size_t) i);
             coup = this->min(copy, profondeur-1);
-            if (max[0] == NULL || coup[1] > max[1]) {
+            if (max[0] == NULL_VALUE || coup[1] > max[1]) {
                 max[0] = i;
                 max[1] = coup[1];
             }
@@ -56,12 +56,12 @@ vector<int> IaPLayer::max(PowerFour powerFour, int profondeur) {
 
 vector<int> IaPLayer::eval(PowerFour powerFour) {
     int vainqueur = powerFour.checkIfWin();
-    vector<int> coup = {NULL, 0};
+    vector<int> coup = {NULL_VALUE, 0};
     if (vainqueur == this->player) {
-        coup = {NULL, 1000};
+        coup = {NULL_VALUE, 1000};
         return coup;
     } else if (vainqueur == (-1) * this->player) {
-        coup = {NULL, -1000};
+        coup = {NULL_VALUE, -1000};
         return coup;
     } else {
         return coup;

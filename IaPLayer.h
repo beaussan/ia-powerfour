@@ -6,6 +6,7 @@
 #define POWERFOUR_IAPLAYER_H
 
 #define DEPTH 4
+#define NULL_VALUE 12345678
 
 #include "Player.h"
 #include "PowerFour.h"
@@ -17,7 +18,7 @@ public:
     vector<int> max(PowerFour powerFour, int profondeur);
     vector<int> eval(PowerFour powerFour);
 
-    int getCoup(PowerFour pf) override;
+    virtual int getCoup(PowerFour pf);
 
 
 };
