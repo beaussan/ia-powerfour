@@ -3,3 +3,8 @@
 //
 
 #include "HumanPlayer.h"
+#include "Utils.h"
+
+int HumanPlayer::getCoup(PowerFour pf) {
+    return getChoice(1,8)-1;
+}

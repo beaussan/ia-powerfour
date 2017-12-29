@@ -11,6 +11,9 @@
 class HumanPlayer : public Player {
 public:
     HumanPlayer(int player, string name) : Player(player, name){}
+
+
+    int getCoup(PowerFour pf) override;
 };
 
 

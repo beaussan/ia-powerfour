@@ -34,52 +34,50 @@ Player createPlayer(int color, const string &printedName) {
 
 int main() {
 
-    // Player p1 = createPlayer(BLUE, "the blue player");
-    // Player p2 = createPlayer(RED, "the red player");
+    Player p1 = createPlayer(BLUE, "the blue player");
+    Player p2 = createPlayer(RED, "the red player");
+
+    int player1Choise = -1;
+    int player2Choise = -1;
+    bool isPlayValid = false;
 
     PowerFour *gr = new PowerFour();
-    cout << gr->get(2, 3) << endl;
-    gr->play(BLUE, 0);
-    gr->play(RED, 0);
-    gr->play(RED, 0);
-    gr->play(BLUE, 0);
-    gr->play(RED, 1);
-    gr->play(RED, 1);
-    gr->play(BLUE, 1);
-    gr->play(RED, 1);
-    gr->play(BLUE, 3);
-    gr->play(BLUE, 5);
-    gr->play(RED, 6);
-    gr->print();
 
+    do{
 
-    cout << "if win " << gr->checkIfWin() << " (rapel : Blue : " << BLUE << ", Red : " << RED << ")" << endl;
+        cout << "--------------" << endl;
+        cout << "Player " << p1.getName() << " (BLUE) Turn !" << endl;
 
-    gr->play(BLUE, 2);
-    gr->play(BLUE, 2);
-    gr->play(BLUE, 2);
-    gr->play(BLUE, 2);
-    cout << "playing mass blue on 2 " << gr->isColumnFull(2) <<  endl;
-    gr->play(BLUE, 2);
-    if (gr->isColumnFull(2)) {
-        cout << "Column is full :D " << endl;
-    }
+        gr->print();
 
-    cout << "playing mass blue on 2 " << gr->isColumnFull(2) <<  endl;
-    gr->play(BLUE, 2);
-    cout << "playing mass blue on 2 " << gr->isColumnFull(2) <<  endl;
-    if (gr->isColumnFull(2)) {
-        cout << "Column is full :D " << endl;
-    }
-    gr->print();
-    gr->play(BLUE, 4);
-    gr->print();
+        player1Choise = p1.getCoup(*gr);
+        do {
+            isPlayValid = gr->play(BLUE, static_cast<size_t>(player1Choise));
+            if (!isPlayValid) {
+                cout << "The move is not valid ! :( The column is full, try again" << endl;
+                player1Choise = p1.getCoup(*gr);
+            }
+        } while (!isPlayValid);
 
-    cout << "if win " << gr->checkIfWin() << " (rapel : Blue : " << BLUE << ", Red : " << RED << ")" << endl;
+        if (gr->checkIfWin() != NONE){
+            break;
+        }
 
-    string tmp;
+        cout << "--------------" << endl;
+        cout << "Player " << p2.getName() << " (RED) Turn !" << endl;
 
-    cin >> tmp;
+        gr->print();
+
+        player2Choise = p2.getCoup(*gr);
+        do {
+            isPlayValid = gr->play(BLUE, static_cast<size_t>(player2Choise));
+            if (!isPlayValid) {
+                cout << "The move is not valid ! :( The column is full, try again" << endl;
+                player2Choise = p2.getCoup(*gr);
+            }
+        } while (!isPlayValid);
+
+    } while (gr->checkIfWin() == NONE);
 
     return 0;
 }
