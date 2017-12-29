@@ -32,7 +32,7 @@ Player createPlayer(int color, const string &printedName) {
     }
 }
 
-int mainy() {
+int main() {
 
     // Player p1 = createPlayer(BLUE, "the blue player");
     // Player p2 = createPlayer(RED, "the red player");
