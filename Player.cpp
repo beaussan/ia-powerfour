@@ -23,7 +23,4 @@ string Player::getName() {
     return this->name;
 }
 
-int Player::getCoup(PowerFour pf) {
-    std::cout << "Returning 0 because whyu not" << std::endl;
-    return 0;
-}
+

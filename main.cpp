@@ -8,15 +8,17 @@
 #include "Player.h"
 #include "HumanPlayer.h"
 
+#include <typeinfo>  //for 'typeid' to work
+
 using namespace std;
 
-Player createPlayer(int color, const string &printedName);
+Player* createPlayer(int color, const string &printedName);
 
-Player createPlayer(int color, const string &printedName) {
+Player* createPlayer(int color, const string &printedName) {
     cout << "What do you want " << printedName << "to be ?" << endl;
     cout << "1) A human player" << endl;
     cout << "2) IA with MinMax algoritm" << endl;
-    int choice = getChoice(1,2);
+    int choice = getChoice(1, 2);
 
     string name;
 
@@ -25,17 +27,19 @@ Player createPlayer(int color, const string &printedName) {
 
     if (choice == 1) {
         cout << "You created a human player called " << name << "!" << endl;
-        return HumanPlayer(color, name);
+        static HumanPlayer human = HumanPlayer(color, name);
+        return &human;
     } else {
         cout << "You created an IA player  called " << name << "!" << endl;
-        return IaPLayer(color, name);
+        static IaPLayer ia = IaPLayer(color, name);
+        return &ia;
     }
 }
 
 int main() {
 
-    auto p1 = createPlayer(BLUE, "the blue player");
-    auto p2 = createPlayer(RED, "the red player");
+    Player* p1 = createPlayer(BLUE, "the blue player");
+    Player* p2 = createPlayer(RED, "the red player");
 
     int player1Choise = -1;
     int player2Choise = -1;
@@ -44,47 +48,47 @@ int main() {
 
     PowerFour pf;
 
-    do{
+    do {
 
         cout << "--------------" << endl;
-        cout << "Player " << p1.getName() << " (BLUE) Turn !" << endl << endl;
+        cout << "Player " << p1->getName() << " (BLUE) Turn !" << endl << endl;
 
         pf.print();
 
-        player1Choise = p1.getCoup(pf);
+        player1Choise = p1->getCoup(pf);
         tryes = 0;
         do {
             tryes++;
             isPlayValid = pf.play(BLUE, player1Choise);
             if (!isPlayValid) {
                 cout << "The move is not valid ! :( The column is full, try again" << endl;
-                player1Choise = p1.getCoup(pf);
+                player1Choise = p1->getCoup(pf);
                 if (tryes > 5) {
-                    cout << "The player " << p2.getName() << " won ! Because the player 1 was dumb." << endl;
+                    cout << "The player " << p2->getName() << " won ! Because the player 1 was dumb." << endl;
                     return 0;
                 }
             }
         } while (!isPlayValid);
 
-        if (pf.checkIfWin() != NONE){
+        if (pf.checkIfWin() != NONE) {
             break;
         }
 
         cout << "--------------" << endl;
-        cout << "Player " << p2.getName() << " (RED) Turn !" << endl;
+        cout << "Player " << p2->getName() << " (RED) Turn !" << endl;
 
         pf.print();
 
-        player2Choise = p2.getCoup(pf);
+        player2Choise = p2->getCoup(pf);
         tryes = 0;
         do {
             tryes++;
             isPlayValid = pf.play(RED, player2Choise);
             if (!isPlayValid) {
                 cout << "The move is not valid ! :( The column is full, try again" << endl;
-                player2Choise = p2.getCoup(pf);
+                player2Choise = p2->getCoup(pf);
                 if (tryes > 5) {
-                    cout << "The player " << p1.getName() << " won ! Because the player 2 was dumb." << endl;
+                    cout << "The player " << p1->getName() << " won ! Because the player 2 was dumb." << endl;
                     return 0;
                 }
             }

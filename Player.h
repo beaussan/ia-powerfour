@@ -15,10 +15,9 @@ protected:
     int player;
     string name;
 public:
-    Player(){};
-    Player(int player, string name);
+    explicit Player(int player, string name);
 
-    int getCoup(PowerFour pf);
+    virtual int getCoup(PowerFour pf) = 0;
 
     int getPlayer();
     void setName(string name);
