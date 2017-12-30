@@ -34,50 +34,63 @@ Player createPlayer(int color, const string &printedName) {
 
 int main() {
 
-    Player p1 = createPlayer(BLUE, "the blue player");
-    Player p2 = createPlayer(RED, "the red player");
+    auto p1 = createPlayer(BLUE, "the blue player");
+    auto p2 = createPlayer(RED, "the red player");
 
     int player1Choise = -1;
     int player2Choise = -1;
+    int tryes = 0;
     bool isPlayValid = false;
 
-    PowerFour *gr = new PowerFour();
+    PowerFour pf;
 
     do{
 
         cout << "--------------" << endl;
-        cout << "Player " << p1.getName() << " (BLUE) Turn !" << endl;
+        cout << "Player " << p1.getName() << " (BLUE) Turn !" << endl << endl;
 
-        gr->print();
+        pf.print();
 
-        player1Choise = p1.getCoup(*gr);
+        player1Choise = p1.getCoup(pf);
+        tryes = 0;
         do {
-            isPlayValid = gr->play(BLUE, static_cast<size_t>(player1Choise));
+            tryes++;
+            isPlayValid = pf.play(BLUE, player1Choise);
             if (!isPlayValid) {
                 cout << "The move is not valid ! :( The column is full, try again" << endl;
-                player1Choise = p1.getCoup(*gr);
+                player1Choise = p1.getCoup(pf);
+                if (tryes > 5) {
+                    cout << "The player " << p2.getName() << " won ! Because the player 1 was dumb." << endl;
+                    return 0;
+                }
             }
         } while (!isPlayValid);
 
-        if (gr->checkIfWin() != NONE){
+        if (pf.checkIfWin() != NONE){
             break;
         }
 
         cout << "--------------" << endl;
         cout << "Player " << p2.getName() << " (RED) Turn !" << endl;
 
-        gr->print();
+        pf.print();
 
-        player2Choise = p2.getCoup(*gr);
+        player2Choise = p2.getCoup(pf);
+        tryes = 0;
         do {
-            isPlayValid = gr->play(BLUE, static_cast<size_t>(player2Choise));
+            tryes++;
+            isPlayValid = pf.play(RED, player2Choise);
             if (!isPlayValid) {
                 cout << "The move is not valid ! :( The column is full, try again" << endl;
-                player2Choise = p2.getCoup(*gr);
+                player2Choise = p2.getCoup(pf);
+                if (tryes > 5) {
+                    cout << "The player " << p1.getName() << " won ! Because the player 2 was dumb." << endl;
+                    return 0;
+                }
             }
         } while (!isPlayValid);
 
-    } while (gr->checkIfWin() == NONE);
+    } while (pf.checkIfWin() == NONE);
 
     return 0;
 }

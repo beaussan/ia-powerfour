@@ -18,7 +18,7 @@ public:
     Player(){};
     Player(int player, string name);
 
-    virtual int getCoup(PowerFour pf);
+    int getCoup(PowerFour pf);
 
     int getPlayer();
     void setName(string name);

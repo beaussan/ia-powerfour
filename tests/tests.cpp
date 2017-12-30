@@ -1,9 +1,8 @@
-/*
 //
 // Created by nicbe on 19/12/2017.
 //
 
-#define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
+// #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
 
 
 #include "../PowerFour.h"
@@ -71,16 +70,15 @@ TEST_CASE("Power four validation is correct", "[PowerFour]") {
             pf->play(BLUE, 6);
             REQUIRE( pf->checkIfWin() == BLUE );
         }
-*/
-/*
- *  | | | |X|X|X|X|
+ /*
+    | | | |X|X|X|X|
     | | | |X|O|X|O|
     | | | |O|X|O|X|
     | | | |O|X|O|X|
     | | | |X|O|X|O|
     | | | |X|O|X|O|
-    +-+-+-+-+-+-+-+
- *//*
+    +-+-+-+-+-+-+-+*/
+
 
         SECTION("should work on last line ends") {
             pf->play(BLUE, 3);
@@ -242,17 +240,6 @@ TEST_CASE("Power four validation is correct", "[PowerFour]") {
         }
 
 
-        */
-/*
-         *  | | | | | | |X|
-            | | | | | |X|O|
-            | | | | |X|O|O|
-            | | | |X|O|X|O|
-            | | | |O|X|O|X|
-            | | | |O|O|X|O|
-            +-+-+-+-+-+-+-+
-         *//*
-
         SECTION("should work on column top end") {
             pf->play(BLUE, 3);
             pf->play(BLUE, 3);
@@ -390,17 +377,6 @@ TEST_CASE("Power four validation is correct", "[PowerFour]") {
         }
 
 
-        */
-/*
-         *  | | | |X| | | |
-            | | | |O|X| | |
-            | | | |O|X|X| |
-            | | | |O|X|O|X|
-            | | | |X|O|X|O|
-            | | | |O|O|O|X|
-            +-+-+-+-+-+-+-+
-         *//*
-
     }
 
-}*/
+}

@@ -14,7 +14,7 @@
 #define WIDTH 7
 
 class PowerFour {
-    Grid *grid_;
+    Grid grid_;
     int checkColumn();
     int checkLines();
     int checkDiagonals();
@@ -25,7 +25,7 @@ public:
 
     int get(size_t c, size_t l);
 
-    bool play(int player, size_t column);
+    bool play(int player, int column);
 
     bool isColumnFull(size_t column);
 

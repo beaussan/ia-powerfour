@@ -13,7 +13,7 @@ public:
     HumanPlayer(int player, string name) : Player(player, name){}
 
 
-    virtual int getCoup(PowerFour pf);
+    int getCoup(PowerFour pf);
 };
 
 

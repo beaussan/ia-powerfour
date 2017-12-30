@@ -18,7 +18,7 @@ public:
     vector<int> max(PowerFour powerFour, int profondeur);
     vector<int> eval(PowerFour powerFour);
 
-    virtual int getCoup(PowerFour pf);
+    int getCoup(PowerFour pf);
 
 
 };

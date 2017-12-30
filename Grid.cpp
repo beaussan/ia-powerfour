@@ -20,6 +20,7 @@ size_t Grid::position(size_t c, size_t l) const {
         std::cout << "Error : " << c << " : " << l << std::endl;
     }
     assert(c < size_ && l < size_);
+
     return c * size_ + l;
 }
 
