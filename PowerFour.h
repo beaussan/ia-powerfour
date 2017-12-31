@@ -33,6 +33,8 @@ public:
 
     int checkIfWin();
 
+    int score(int player, PowerFour grille);
+
 
 };
 

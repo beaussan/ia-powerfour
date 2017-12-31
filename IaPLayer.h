@@ -12,10 +12,13 @@
 #include "PowerFour.h"
 
 class IaPLayer : public Player {
+protected:
+    int totalCoups;
 public:
-    IaPLayer(int player, string name) : Player(player, name){}
-    vector<int> min(PowerFour powerFour, int profondeur);
-    vector<int> max(PowerFour powerFour, int profondeur);
+    IaPLayer(int player, string name) : Player(player, name){ this->totalCoups = 0;};
+//    vector<int> min(PowerFour powerFour, int profondeur);
+//    vector<int> max(PowerFour powerFour, int profondeur);
+    vector<int> minmax(PowerFour pf, int profondeur, int alpha, int beta, int joueur);
     vector<int> eval(PowerFour powerFour);
 
     int getCoup(PowerFour pf);
