@@ -8,5 +8,5 @@
 
 int HumanPlayer::getCoup(PowerFour pf) {
     std::cout << "Get play human !" << std::endl;
-    return getChoice(1,8)-1;
+    return getChoice(1,7)-1;
 }
