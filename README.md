@@ -1,6 +1,8 @@
 # Power Four
 
-![ConnectFour](./.github/power.jpg)
+<p align="center">
+  <img src="./.github/power.jpg?raw=true" alt="ConnectFour"/>
+</p>
 
 [Français en dessus](#Français)
 
