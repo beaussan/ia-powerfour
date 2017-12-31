@@ -29,6 +29,8 @@ public:
 
     bool isColumnFull(size_t column);
 
+    bool isGameTie();
+
     void print();
 
     int checkIfWin();

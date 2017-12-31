@@ -9,7 +9,7 @@
 
 using namespace std;
 
-PowerFour::PowerFour() : grid_(WIDTH+1, NONE){
+PowerFour::PowerFour() : grid_(WIDTH + 1, NONE) {
 }
 
 PowerFour::~PowerFour() {
@@ -31,8 +31,8 @@ bool PowerFour::play(int player, int column) {
     assert(0 <= column && column < WIDTH);
 
     for (size_t l = 0; l < HEIGHT; ++l) {
-        if (this->get((size_t)column, l) == NONE) {
-            this->grid_((size_t)column, l) = player;
+        if (this->get((size_t) column, l) == NONE) {
+            this->grid_((size_t) column, l) = player;
             return true;
         }
     }
@@ -62,11 +62,12 @@ void PowerFour::print() {
 
 }
 #else
+
 void PowerFour::print() {
     for (size_t line = HEIGHT; line > 0; line--) {
         cout << "|";
         for (size_t column = 0; column < WIDTH; ++column) {
-            int val = this->grid_(column, line-1);
+            int val = this->grid_(column, line - 1);
             if (val == NONE) {
                 cout << " ";
             } else if (val == BLUE) {
@@ -82,6 +83,7 @@ void PowerFour::print() {
     cout << " 1 2 3 4 5 6 7 " << endl << endl;
 
 }
+
 #endif
 
 /**
@@ -113,13 +115,13 @@ int PowerFour::checkColumn() {
     for (size_t column = 0; column < WIDTH; ++column) {
         for (size_t line = 0; line < 3; line++) {
             int somme = this->grid_(column, line)
-                        + this->grid_(column, line+1)
-                        + this->grid_(column, line+2)
-                        + this->grid_(column, line+3);
+                        + this->grid_(column, line + 1)
+                        + this->grid_(column, line + 2)
+                        + this->grid_(column, line + 3);
 
-            if (somme == RED*4) {
+            if (somme == RED * 4) {
                 return RED;
-            } else if (somme == BLUE*4) {
+            } else if (somme == BLUE * 4) {
                 return BLUE;
             }
         }
@@ -131,15 +133,15 @@ int PowerFour::checkColumn() {
 
 int PowerFour::checkLines() {
     for (size_t line = HEIGHT; line > 0; line--) {
-        for (size_t column = 0; column <= WIDTH-4; ++column) {
-            int somme = this->grid_(column, line-1)
-            + this->grid_(column+1, line-1)
-            + this->grid_(column+2, line-1)
-            + this->grid_(column+3, line-1);
+        for (size_t column = 0; column <= WIDTH - 4; ++column) {
+            int somme = this->grid_(column, line - 1)
+                        + this->grid_(column + 1, line - 1)
+                        + this->grid_(column + 2, line - 1)
+                        + this->grid_(column + 3, line - 1);
 
-            if (somme == RED*4) {
+            if (somme == RED * 4) {
                 return RED;
-            } else if (somme == BLUE*4) {
+            } else if (somme == BLUE * 4) {
                 return BLUE;
             }
         }
@@ -151,16 +153,16 @@ int PowerFour::checkDiagonals() {
 
     // check right diagonals
 
-    for (size_t line = 0; line < HEIGHT -3; ++line) {
-        for(size_t column = 0; column < WIDTH - 3; ++column){
+    for (size_t line = 0; line < HEIGHT - 3; ++line) {
+        for (size_t column = 0; column < WIDTH - 3; ++column) {
             int somme = this->grid_(column, line)
-                + this->grid_(column + 1, line+1)
-                + this->grid_(column + 2, line+2)
-                + this->grid_(column + 3, line+3);
+                        + this->grid_(column + 1, line + 1)
+                        + this->grid_(column + 2, line + 2)
+                        + this->grid_(column + 3, line + 3);
 
-            if (somme == RED*4) {
+            if (somme == RED * 4) {
                 return RED;
-            } else if (somme == BLUE*4) {
+            } else if (somme == BLUE * 4) {
                 return BLUE;
             }
         }
@@ -168,16 +170,16 @@ int PowerFour::checkDiagonals() {
 
     // check left diagonals
 
-    for (size_t line = 0; line < HEIGHT -3; ++line) {
-        for(size_t column = 3; column < WIDTH; ++column){
+    for (size_t line = 0; line < HEIGHT - 3; ++line) {
+        for (size_t column = 3; column < WIDTH; ++column) {
             int somme = this->grid_(column, line)
-                        + this->grid_(column - 1, line+1)
-                        + this->grid_(column - 2, line+2)
-                        + this->grid_(column - 3, line+3);
+                        + this->grid_(column - 1, line + 1)
+                        + this->grid_(column - 2, line + 2)
+                        + this->grid_(column - 3, line + 3);
 
-            if (somme == RED*4) {
+            if (somme == RED * 4) {
                 return RED;
-            } else if (somme == BLUE*4) {
+            } else if (somme == BLUE * 4) {
                 return BLUE;
             }
         }
@@ -189,6 +191,17 @@ int PowerFour::checkDiagonals() {
 
 bool PowerFour::isColumnFull(size_t column) {
     return this->grid_(column, WIDTH - 2) != NONE;
+}
+
+bool PowerFour::isGameTie() {
+    return isColumnFull(0)
+           && isColumnFull(1)
+           && isColumnFull(2)
+           && isColumnFull(3)
+           && isColumnFull(4)
+           && isColumnFull(5)
+           && isColumnFull(6)
+           && isColumnFull(7);
 }
 
 
