@@ -27,12 +27,12 @@ Player* createPlayer(int color, const string &printedName) {
 
     if (choice == 1) {
         cout << "You created a human player called " << name << "!" << endl;
-        static HumanPlayer human = HumanPlayer(color, name);
-        return &human;
+        HumanPlayer* human = new HumanPlayer(color, name);
+        return human;
     } else {
         cout << "You created an IA player  called " << name << "!" << endl;
-        static IaPLayer ia = IaPLayer(color, name);
-        return &ia;
+        IaPLayer *ia = new IaPLayer(color, name);
+        return ia;
     }
 }
 
