@@ -4,7 +4,7 @@
   <img src="./.github/power.jpg?raw=true" alt="ConnectFour"/>
 </p>
 
-[Français en dessus](#Français)
+[Français en dessous](#français)
 
 This is a Connect Four implementation in c++ with the ability to play Player vs Player, Ai vs Player or Ai vs Ai.
 
