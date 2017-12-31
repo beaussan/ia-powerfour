@@ -42,7 +42,7 @@ Ceci est une implémentation en c++ du puissance 4 avec la possibilité de jouer
 
 L'objectif de la réalisation de ce jeu est de s'entrainer à faire une Ia MinMax pour le puissance quatre.
 
-## Autheurs
+## Auteurs
 
 * [Nicolas Beaussart](https://github.com/beaussart)
 * [Naël Abou Chahine](https://github.com/NaelFR)
