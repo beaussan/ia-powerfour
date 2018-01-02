@@ -194,6 +194,18 @@ bool PowerFour::isColumnFull(size_t column) {
     return this->grid_(column, WIDTH - 2) != NONE;
 }
 
+bool PowerFour::isGameTie() {
+    return isColumnFull(0)
+           && isColumnFull(1)
+           && isColumnFull(2)
+           && isColumnFull(3)
+           && isColumnFull(4)
+           && isColumnFull(5)
+           && isColumnFull(6)
+           && isColumnFull(7);
+}
+
+
 int PowerFour::score(int player, PowerFour grille) {
     int points, vertical_points, horizontal_points, diagonal_points1, diagonal_points2;
 

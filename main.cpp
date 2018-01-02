@@ -70,7 +70,7 @@ int main() {
             }
         } while (!isPlayValid);
 
-        if (pf.checkIfWin() != NONE) {
+        if (pf.checkIfWin() != NONE || pf.isGameTie()) {
             break;
         }
 
@@ -94,7 +94,17 @@ int main() {
             }
         } while (!isPlayValid);
 
-    } while (pf.checkIfWin() == NONE);
+    } while (pf.checkIfWin() == NONE && !pf.isGameTie());
+
+    pf.print();
+    
+    if (pf.isGameTie()) {
+        cout << "The game is a tie !" << endl;
+    } else if (pf.checkIfWin() == RED) {
+        cout << "The player " << p2->getName() << " won !";
+    } else if (pf.checkIfWin() == BLUE) {
+        cout << "The player " << p1->getName() << " won !";
+    }
 
     return 0;
 }
